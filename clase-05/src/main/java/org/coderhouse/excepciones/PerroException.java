@@ -1,4 +1,4 @@
-package org.coderhouse;
+package org.coderhouse.excepciones;
 
 public class PerroException extends Exception {
 
