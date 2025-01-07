@@ -1,6 +1,7 @@
 package com.coderhouse.finalEcommerce.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class Comprador {
     @ManyToMany(mappedBy = "compradores", fetch = FetchType.EAGER)
     private List<Producto> productos = new ArrayList<>();
 
+    @CreationTimestamp
+    @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime createdAt;
 
     public Comprador() {

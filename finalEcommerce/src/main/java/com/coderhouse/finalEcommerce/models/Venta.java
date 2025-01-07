@@ -19,6 +19,8 @@ public class Venta {
 
     private int cantidad;
 
+    private float precio;
+
     private float total;
 
     private LocalDateTime fechaVenta;
@@ -58,6 +60,14 @@ public class Venta {
         this.cantidad = cantidad;
     }
 
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
     public float getTotal() {
         return total;
     }
@@ -79,8 +89,9 @@ public class Venta {
         return "Venta{" +
                 "idVenta=" + idVenta +
                 ", productos=" + productos +
-                ", comprador=" + comprador +
+                ", comprador='" + comprador + '\'' +
                 ", cantidad=" + cantidad +
+                ", precio=" + precio +
                 ", total=" + total +
                 ", fechaVenta=" + fechaVenta +
                 '}';
