@@ -1,8 +1,7 @@
-package com.coderhouse.clase_11.controller;
+package com.coderhouse.clase_12.controller;
 
-import com.coderhouse.clase_11.model.Curso;
-import com.coderhouse.clase_11.repository.CursoRepository;
-import com.coderhouse.clase_11.service.CursoService;
+import com.coderhouse.clase_12.model.Curso;
+import com.coderhouse.clase_12.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

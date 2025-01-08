@@ -1,4 +1,4 @@
-package com.coderhouse.clase_11.model;
+package com.coderhouse.clase_12.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,8 +1,7 @@
-package com.coderhouse.clase_11.controller;
+package com.coderhouse.clase_12.controller;
 
-import com.coderhouse.clase_11.model.Categoria;
-import com.coderhouse.clase_11.repository.CategoriaRepository;
-import com.coderhouse.clase_11.service.CategoriaService;
+import com.coderhouse.clase_12.model.Categoria;
+import com.coderhouse.clase_12.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
