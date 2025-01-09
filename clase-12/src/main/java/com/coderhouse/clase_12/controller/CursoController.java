@@ -1,5 +1,6 @@
 package com.coderhouse.clase_12.controller;
 
+import com.coderhouse.clase_12.dto.AsignacionCategoriaCursoDTO;
 import com.coderhouse.clase_12.model.Curso;
 import com.coderhouse.clase_12.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +60,25 @@ public class CursoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Curso> deleteCurso(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCurso(@PathVariable Long id){
         try {
             cursoService.deleteCursoById(id);
             return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/asignar-categoria")
+    public ResponseEntity<Curso> asignarCategoriaACurso(@RequestBody AsignacionCategoriaCursoDTO asignacionCategoriaCursoDTO){
+        try {
+            Curso cursoActualizado = cursoService.asignarCategoriaACurso(
+                    asignacionCategoriaCursoDTO.getCursoId(),
+                    asignacionCategoriaCursoDTO.getCategoriaId()
+            );
+            return ResponseEntity.ok(cursoActualizado);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {

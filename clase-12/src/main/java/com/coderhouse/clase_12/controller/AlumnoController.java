@@ -1,5 +1,6 @@
 package com.coderhouse.clase_12.controller;
 
+import com.coderhouse.clase_12.dto.InscripcionDTO;
 import com.coderhouse.clase_12.model.Alumno;
 import com.coderhouse.clase_12.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,18 @@ public class AlumnoController {
         }catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build(); //404
         }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/inscribir")
+    public ResponseEntity<Alumno> inscribirAlumboACursos(@RequestBody InscripcionDTO inscripcionDTO){
+        try {
+            Alumno alumno = alumnoService.inscribirAlumnoACursos(inscripcionDTO);
+            return ResponseEntity.ok(alumno);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }   catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
