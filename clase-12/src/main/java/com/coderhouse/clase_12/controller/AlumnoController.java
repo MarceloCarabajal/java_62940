@@ -44,7 +44,7 @@ public class AlumnoController {
         try {
             Alumno alumnoCreado = alumnoService.saveAlumno(alumno);
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnoCreado);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

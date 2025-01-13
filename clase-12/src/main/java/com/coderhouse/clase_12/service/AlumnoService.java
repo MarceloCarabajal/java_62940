@@ -38,7 +38,7 @@ public class AlumnoService {
     public Alumno updateAlumnoById(Long id, Alumno alumnoDetails) {
         Alumno alumno = alumnoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Alumno no encontrado"));
-                alumno.setNombre(alumno.getNombre());
+                alumno.setNombre(alumnoDetails.getNombre());
                 alumno.setApellido(alumnoDetails.getApellido());
 
                 if(alumnoDetails.getDni() != 0) {
