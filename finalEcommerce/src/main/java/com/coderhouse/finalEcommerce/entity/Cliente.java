@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "compradores")
+@Table(name = "clientes")
 public class Cliente {
 
     @Id
@@ -33,10 +33,10 @@ public class Cliente {
     @Column(unique = true, nullable = false)
     private int dni;
 
-    @Column(name = "num_comprador")
-    private String numComprador;
+    @Column(name = "num_cliente")
+    private String numCliente;
 
-    @ManyToMany(mappedBy = "compradores", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
     private List<Producto> productos = new ArrayList<>();
 
     @CreationTimestamp

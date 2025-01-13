@@ -42,8 +42,8 @@ public class ClienteService {
             cliente.setDni(clienteDetails.getDni());
         }
 
-        if(clienteDetails.getNumComprador() != null && !clienteDetails.getNumComprador().isEmpty()){
-            cliente.setNumComprador(clienteDetails.getNumComprador());
+        if(clienteDetails.getNumCliente() != null && !clienteDetails.getNumCliente().isEmpty()){
+            cliente.setNumCliente(clienteDetails.getNumCliente());
         }
 
         return clienteRepository.save(cliente);
