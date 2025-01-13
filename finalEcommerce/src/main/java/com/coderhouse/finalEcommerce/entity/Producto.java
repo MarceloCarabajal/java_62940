@@ -7,6 +7,9 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representa un producto disponible en el sistema de e-commerce.
+ */
 @Getter
 @Setter
 @ToString
@@ -16,6 +19,9 @@ import java.util.List;
 @Table(name = "productos")
 public class Producto {
 
+    /**
+     * Identificador único del producto.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Autoincremental
     private long id;
@@ -38,6 +44,9 @@ public class Producto {
     @JsonIgnore
     private List<Cliente> clientes = new ArrayList<>();
 
+    /**
+     * Categoría a la que pertenece el producto.
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoria;
 

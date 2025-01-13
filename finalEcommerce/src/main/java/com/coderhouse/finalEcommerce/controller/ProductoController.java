@@ -4,14 +4,23 @@ import com.coderhouse.finalEcommerce.dao.AsignacionCatetoriaProductoDTO;
 import com.coderhouse.finalEcommerce.entity.Producto;
 import com.coderhouse.finalEcommerce.service.CategoriaService;
 import com.coderhouse.finalEcommerce.service.ProductoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/producto")
+@Tag(name ="Productos", description = "Producto Management System")
+@RestController
+@RequestMapping("/api/producto")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
@@ -19,6 +28,13 @@ public class ProductoController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Operation(summary = "Get all productos", description = "Permite listar todos los productos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @GetMapping
     public ResponseEntity<List<Producto>> getAllProductos(){
         try {
@@ -31,6 +47,13 @@ public class ProductoController {
         }
     }
 
+    @Operation(summary = "Get Producto By ID", description = "Permite traer un producto por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @GetMapping("/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable Long id){
         try {
@@ -43,6 +66,13 @@ public class ProductoController {
         }
     }
 
+    @Operation(summary = "Create Producto", description = "Permite crear un producto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @PostMapping
     public ResponseEntity<Producto> createProducto(@RequestBody Producto producto){
         try {
@@ -55,6 +85,13 @@ public class ProductoController {
         }
     }
 
+    @Operation(summary = "Update Producto By ID", description = "Permite actualizar un producto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @PutMapping("/{id}")
     public ResponseEntity<Producto> updateProductoById(@PathVariable Long id, @RequestBody Producto productoDetails){
         try {
@@ -67,6 +104,13 @@ public class ProductoController {
         }
     }
 
+    @Operation(summary = "Delete Producto By ID", description = "Permite eliminar un producto por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProductoById(@PathVariable Long id){
         try {
@@ -79,6 +123,13 @@ public class ProductoController {
         }
     }
 
+    @Operation(summary = "Add Categoria to Producto", description = "Permite agregar categoría a producto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "400", description = "Parámetros incorrectos",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class))}
+            )})
     @PostMapping("/asignar-categoria")
     public ResponseEntity<Producto> asignarProductoACliente(@RequestBody AsignacionCatetoriaProductoDTO asignacionCatetoriaProductoDTO){
         try {

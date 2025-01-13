@@ -3,6 +3,9 @@ package com.coderhouse.finalEcommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Representa un detalle de una venta, incluyendo el producto y la cantidad vendida.
+ */
 @Getter
 @Setter
 @ToString
@@ -11,6 +14,10 @@ import lombok.*;
 @Entity
 @Table(name = "venta_detalles")
 public class VentaDetalle {
+
+    /**
+     * Identificador único del detalle de la venta.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
