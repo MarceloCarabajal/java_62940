@@ -1,6 +1,6 @@
 package com.coderhouse.finalEcommerce.controller;
 
-import com.coderhouse.finalEcommerce.dao.AsignacionCatetoriaProductoDTO;
+import com.coderhouse.finalEcommerce.dto.AsignacionCatetoriaProductoDTO;
 import com.coderhouse.finalEcommerce.entity.Producto;
 import com.coderhouse.finalEcommerce.service.CategoriaService;
 import com.coderhouse.finalEcommerce.service.ProductoService;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name ="Productos", description = "Producto Management System")
+@Tag(name ="Producto", description = "Producto Management System")
 @RestController
 @RequestMapping("/api/producto")
 public class ProductoController {

@@ -1,4 +1,4 @@
-package com.coderhouse.finalEcommerce.dao;
+package com.coderhouse.finalEcommerce.dto;
 
 import lombok.Getter;
 import lombok.Setter;
