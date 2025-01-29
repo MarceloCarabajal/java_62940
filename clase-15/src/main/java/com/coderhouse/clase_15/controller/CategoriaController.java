@@ -80,7 +80,7 @@ public class CategoriaController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Operation(summary = "Actualizar una Categoría por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categorías actualizada correctamente",
@@ -101,7 +101,7 @@ public class CategoriaController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar una Categoría por ID ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Categorías obtenidas correctamente",

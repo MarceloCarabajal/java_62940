@@ -33,7 +33,7 @@ public class CategoriaService {
     }
 
     @Transactional
-    public Categoria updateCategoria(long id, Categoria categoriaDetails){
+    public Categoria updateCategoria(Long id, Categoria categoriaDetails){
         Categoria categoria = categoriaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Categoria no encontrada"));
         categoria.setNombre(categoriaDetails.getNombre());
