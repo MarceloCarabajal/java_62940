@@ -1,5 +1,6 @@
 package com.coderhouse.finalEcommerce.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "ventas")
+@Schema(description = "Modelo de Venta", title = "Modelo de Venta")
 public class Venta {
 
     /**

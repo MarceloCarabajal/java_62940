@@ -2,6 +2,7 @@ package com.coderhouse.finalEcommerce.service;
 
 import com.coderhouse.finalEcommerce.entity.Categoria;
 import com.coderhouse.finalEcommerce.entity.Producto;
+import com.coderhouse.finalEcommerce.error.AsignacionCategoriaException;
 import com.coderhouse.finalEcommerce.repository.CategoriaRepository;
 import com.coderhouse.finalEcommerce.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
@@ -62,11 +63,11 @@ public class ProductoService {
     }
 
     @Transactional
-    public Producto asignarCategoriaAProducto(Long productoId, Long categoriaId) {
+    public Producto addCategoryToProduct(Long productoId, Long categoriaId) throws AsignacionCategoriaException {
         Categoria categoria = categoriaRepository.findById(categoriaId)
-                .orElseThrow(() -> new IllegalArgumentException("No se encuentra categoria con ID: " + categoriaId));
+                .orElseThrow(() -> new AsignacionCategoriaException("No se encuentra categoria con ID: " + categoriaId));
         Producto producto = productoRepository.findById(productoId)
-                .orElseThrow(() -> new IllegalArgumentException("No se encuentra producto con ID: " + productoId));
+                .orElseThrow(() -> new AsignacionCategoriaException("No se encuentra producto con ID: " + productoId));
 
         producto.setCategoria(categoria);
 

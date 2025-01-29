@@ -1,7 +1,11 @@
 package com.coderhouse.finalEcommerce.service;
 
+import com.coderhouse.finalEcommerce.dto.CompraDTO;
 import com.coderhouse.finalEcommerce.entity.Cliente;
+import com.coderhouse.finalEcommerce.entity.Producto;
+import com.coderhouse.finalEcommerce.error.CompraException;
 import com.coderhouse.finalEcommerce.repository.ClienteRepository;
+import com.coderhouse.finalEcommerce.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,9 @@ import java.util.List;
 public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
     public List<Cliente> getAllClientes(){
         return clienteRepository.findAll();
@@ -36,6 +43,7 @@ public class ClienteService {
         cliente.setApellido(clienteDetails.getApellido());
         cliente.setEdad(clienteDetails.getEdad());
         cliente.setEmail(clienteDetails.getEmail());
+
         cliente.setProductos(clienteDetails.getProductos());
 
         if(clienteDetails.getDni() != 0){
@@ -56,7 +64,21 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    /*@Transactional
-    public Cliente comprarProductosPorCliente() {
-    }*/
+    @Transactional
+    public Cliente buyProductsByCustomer(CompraDTO compraDTO) throws CompraException {
+        Cliente cliente = clienteRepository.findById(compraDTO.getClienteId())
+                .orElseThrow(() -> new CompraException("No se encuentra cliente con ID: " + compraDTO.getClienteId()));
+
+        for (Long productoId : compraDTO.getProductosId()) {
+            Producto producto = productoRepository.findById(productoId)
+                    .orElseThrow(() -> new CompraException("No se encuentra producto con ID: " + productoId));
+
+            cliente.getProductos().add(producto);
+            producto.getClientes().add(cliente);
+
+            productoRepository.save(producto);
+        }
+
+        return clienteRepository.save(cliente);
+    }
 }

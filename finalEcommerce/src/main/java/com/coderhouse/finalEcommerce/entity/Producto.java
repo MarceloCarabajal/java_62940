@@ -1,6 +1,7 @@
 package com.coderhouse.finalEcommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "productos")
+@Schema(description = "Modelo de Cliente", title = "Modelo de Cliente")
 public class Producto {
 
     /**

@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "clientes")
+@Schema(description = "Modelo de Cliente", title = "Modelo de Cliente")
 public class Cliente {
 
     @Id

@@ -1,7 +1,8 @@
 package com.coderhouse.finalEcommerce.controller;
 
-import com.coderhouse.finalEcommerce.dto.AsignacionCatetoriaProductoDTO;
+import com.coderhouse.finalEcommerce.dto.AsignaCategoriaProductoDTO;
 import com.coderhouse.finalEcommerce.entity.Producto;
+import com.coderhouse.finalEcommerce.error.AsignacionCategoriaException;
 import com.coderhouse.finalEcommerce.service.CategoriaService;
 import com.coderhouse.finalEcommerce.service.ProductoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -131,14 +132,14 @@ public class ProductoController {
                             schema = @Schema(implementation = ErrorResponse.class))}
             )})
     @PostMapping("/asignar-categoria")
-    public ResponseEntity<Producto> asignarProductoACliente(@RequestBody AsignacionCatetoriaProductoDTO asignacionCatetoriaProductoDTO){
+    public ResponseEntity<Producto> addCategoryToProduct(@RequestBody AsignaCategoriaProductoDTO asignacionCatetoriaProductoDTO){
         try {
-            Producto updatedProducto = productoService.asignarCategoriaAProducto(
+            Producto updateProducto = productoService.addCategoryToProduct(
                     asignacionCatetoriaProductoDTO.getProductoId(),
                     asignacionCatetoriaProductoDTO.getCategoriaId()
                     );
-            return ResponseEntity.ok(updatedProducto);
-        } catch (IllegalArgumentException e) {
+            return ResponseEntity.ok(updateProducto);
+        } catch (AsignacionCategoriaException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

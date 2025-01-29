@@ -1,11 +1,9 @@
 package com.coderhouse.finalEcommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +15,10 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "categorias")
+@Schema(description = "Modelo de Categoria", title = "Modelo de Categoria")
 public class Categoria {
     /**
      * Identificador único de la categoría.

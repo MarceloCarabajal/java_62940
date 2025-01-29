@@ -1,6 +1,8 @@
 package com.coderhouse.finalEcommerce.controller;
 
+import com.coderhouse.finalEcommerce.dto.CompraDTO;
 import com.coderhouse.finalEcommerce.entity.Cliente;
+import com.coderhouse.finalEcommerce.error.CompraException;
 import com.coderhouse.finalEcommerce.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -113,6 +115,18 @@ public class ClienteController {
             clienteService.deleteClienteById(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/compra")
+    public ResponseEntity<Cliente> buyProductsByCustomer(@RequestBody CompraDTO compraDTO){
+        try {
+            Cliente cliente = clienteService.buyProductsByCustomer(compraDTO);
+            return ResponseEntity.ok(cliente);
+        } catch (CompraException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
