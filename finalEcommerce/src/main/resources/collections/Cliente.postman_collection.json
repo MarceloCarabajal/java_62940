@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "4e83c3ef-fb38-47fc-ba0e-6ce508245057",
+		"name": "Cliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30958129",
+		"_collection_link": "https://marce9.postman.co/workspace/Java-Spring-Boot-Final~a7561042-f2ea-444b-b53c-59cb5ac1547a/collection/30958129-4e83c3ef-fb38-47fc-ba0e-6ce508245057?action=share&source=collection_link&creator=30958129"
+	},
+	"item": [
+		{
+			"name": "getAllClientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getClienteById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/cliente/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cliente",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "/*{\r\n    \"nombre\": \"Franco\",\r\n    \"apellido\": \"Sanchez\",\r\n    \"edad\": 27,\r\n    \"email\": \"fsanchez@email.com\",\r\n    \"dni\": 34333333,\r\n    \"numCliente\": 1\r\n}*/\r\n/*{\r\n    \"nombre\": \"Marcelo\",\r\n    \"apellido\": \"Carabajal\",\r\n    \"edad\": 34,\r\n    \"email\": \"mcarabajal@email.com\",\r\n    \"dni\": 34333334,\r\n    \"numCliente\": 2\r\n}*/\r\n/*{\r\n    \"nombre\": \"Thomas\",\r\n    \"apellido\": \"Monzon\",\r\n    \"edad\": 30,\r\n    \"email\": \"tmonzon@email.com\",\r\n    \"dni\": 36333334,\r\n    \"numCliente\": 3\r\n}*/\r\n/*{\r\n    \"nombre\": \"Martin\",\r\n    \"apellido\": \"Carabajal\",\r\n    \"edad\": 32,\r\n    \"email\": \"acarabajal@email.com\",\r\n    \"dni\": 34343334,\r\n    \"numCliente\": 4\r\n}*/\r\n/*{\r\n    \"nombre\": \"Dario\",\r\n    \"apellido\": \"Lencina\",\r\n    \"edad\": 34,\r\n    \"email\": \"dlencina@email.com\",\r\n    \"dni\": 34343334,\r\n    \"numCliente\": 5\r\n}*/",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateClienteById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Marcelo\",\r\n    \"apellido\": \"Carabajal\",\r\n    \"edad\": 34,\r\n    \"email\": \"mcarabajal@email.com\",\r\n    \"dni\": 35333334,\r\n    \"numCliente\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cliente/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cliente",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteClienteById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/cliente/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cliente",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
