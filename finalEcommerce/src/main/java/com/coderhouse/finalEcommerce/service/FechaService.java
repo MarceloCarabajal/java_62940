@@ -1,6 +1,6 @@
 package com.coderhouse.finalEcommerce.service;
 
-import com.coderhouse.finalEcommerce.dto.FechaResponseDTO;
+import com.coderhouse.finalEcommerce.dto.TimeApiResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -12,10 +12,10 @@ public class FechaService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public FechaResponseDTO obtenerFechaActual(){
+    public TimeApiResponseDTO obtenerFechaActual(){
         try{
             final String URL = "https://timeapi.io/api/Time/current/zone?timeZone=America/Argentina/Buenos_Aires";
-            return restTemplate.getForObject(URL, FechaResponseDTO.class);
+            return restTemplate.getForObject(URL, TimeApiResponseDTO.class);
         } catch (RestClientException e){
             System.err.println("Error, no se pudo conectar a la API Externa: " + e.getMessage());
             return null;

@@ -1,9 +1,6 @@
 package com.coderhouse.finalEcommerce.service;
 
-import com.coderhouse.finalEcommerce.dto.CompraDTO;
 import com.coderhouse.finalEcommerce.entity.Cliente;
-import com.coderhouse.finalEcommerce.entity.Producto;
-import com.coderhouse.finalEcommerce.error.CompraException;
 import com.coderhouse.finalEcommerce.repository.ClienteRepository;
 import com.coderhouse.finalEcommerce.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
@@ -44,8 +41,6 @@ public class ClienteService {
         cliente.setEdad(clienteDetails.getEdad());
         cliente.setEmail(clienteDetails.getEmail());
 
-        cliente.setProductos(clienteDetails.getProductos());
-
         if(clienteDetails.getDni() != 0){
             cliente.setDni(clienteDetails.getDni());
         }
@@ -62,23 +57,5 @@ public class ClienteService {
             throw new IllegalArgumentException("No se encuentra cliente con ID: " + id);
         }
         clienteRepository.deleteById(id);
-    }
-
-    @Transactional
-    public Cliente buyProductsByCustomer(CompraDTO compraDTO) throws CompraException {
-        Cliente cliente = clienteRepository.findById(compraDTO.getClienteId())
-                .orElseThrow(() -> new CompraException("No se encuentra cliente con ID: " + compraDTO.getClienteId()));
-
-        for (Long productoId : compraDTO.getProductosId()) {
-            Producto producto = productoRepository.findById(productoId)
-                    .orElseThrow(() -> new CompraException("No se encuentra producto con ID: " + productoId));
-
-            cliente.getProductos().add(producto);
-            producto.getClientes().add(cliente);
-
-            productoRepository.save(producto);
-        }
-
-        return clienteRepository.save(cliente);
     }
 }

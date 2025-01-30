@@ -21,9 +21,6 @@ import java.util.List;
 @Schema(description = "Modelo de Cliente", title = "Modelo de Cliente")
 public class Producto {
 
-    /**
-     * Identificador único del producto.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Autoincremental
     private long id;
@@ -46,9 +43,6 @@ public class Producto {
     @JsonIgnore
     private List<Cliente> clientes = new ArrayList<>();
 
-    /**
-     * Categoría a la que pertenece el producto.
-     */
     @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoria;
 

@@ -1,12 +1,10 @@
 package com.coderhouse.finalEcommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
-/**
- * Representa un detalle de una venta, incluyendo el producto y la cantidad vendida.
- */
 @Getter
 @Setter
 @ToString
@@ -17,20 +15,20 @@ import lombok.*;
 @Schema(description = "Modelo de Venta-Detalle", title = "Modelo de Venta-Detalle")
 public class VentaDetalle {
 
-    /**
-     * Identificador único del detalle de la venta.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "venta_id")
     private Venta venta;
 
     @ManyToOne
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @JoinColumn(name = "producto_venta_id")
+    private ProductoVenta productoVenta;
 
     private int cantidad;
+
+    private double precioUnitario;
 }

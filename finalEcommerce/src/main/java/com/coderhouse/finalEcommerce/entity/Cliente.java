@@ -9,9 +9,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Representa un cliente en el sistema de e-commerce.
- */
 @Getter
 @Setter
 @ToString
@@ -47,9 +44,6 @@ public class Cliente {
     @Column(name = "num_cliente")
     @Schema(description = "Numero de cliente", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
     private String numCliente;
-
-    @ManyToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
-    private List<Producto> productos = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "fecha_creacion", updatable = false)

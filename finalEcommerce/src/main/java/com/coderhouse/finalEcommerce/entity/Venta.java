@@ -1,14 +1,14 @@
 package com.coderhouse.finalEcommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Representa una venta realizada en el sistema de e-commerce.
- */
 @Getter
 @Setter
 @ToString
@@ -19,23 +19,21 @@ import java.util.List;
 @Schema(description = "Modelo de Venta", title = "Modelo de Venta")
 public class Venta {
 
-    /**
-     * Identificador único de la venta.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * Cliente que realizó la venta.
-     */
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    /**
-     * Detalles de los productos incluidos en la venta.
-     */
-    @OneToMany(mappedBy = "venta")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<VentaDetalle> detalles;
+
+    private LocalDateTime fecha;
+
+    private double precioTotal;
+
+    private int cantidadProductos;
 }
